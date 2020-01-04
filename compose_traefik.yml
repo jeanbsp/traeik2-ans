@@ -1,1 +1,20 @@
-versao 3.3
+versão : " 3.3 "
+
+serviços :
+  traefik :
+    imagem : " traefik: v2.0.1 "
+    comando :
+      - --entrypoints.web.address=: 80
+      - --providers.docker
+      - --api.insecure
+    portas :
+      - " 80:80 "
+      - " 8080: 8080 "
+    volumes :
+      - " /var/run/docker.sock:/var/run/docker.sock:ro"
+
+
+networks:
+    - proxy: 
+        drive: overlay      
+
