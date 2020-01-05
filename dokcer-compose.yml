@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   traefik:
-    image: "traefik:v2.1.2"
+    image: "traefik:v2.1"
     command:
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
@@ -17,6 +17,8 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./config/certs/:/configuration/"
+    networks:
+      - netproxy  
 
   my-app:
     image: containous/whoami:v1.3.0
@@ -24,6 +26,6 @@ services:
       - traefik.http.routers.my-app.rule=Host("whoami.docker.localhost")
 
 networks:
-    - proxy: 
-        drive: overlay      
+  netproxy: 
+    drive: overlay      
 
