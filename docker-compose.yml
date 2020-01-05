@@ -27,5 +27,5 @@ services:
 
 networks:
   netproxy: 
-    drive: overlay      
+    driver: overlay      
 
